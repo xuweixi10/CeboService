@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ceboService.iml" filepath="$PROJECT_DIR$/.idea/ceboService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nan-cebo-apis/nan-cebo-apis.iml" filepath="$PROJECT_DIR$/nan-cebo-apis/nan-cebo-apis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nan-cebo-common/nan-cebo-common.iml" filepath="$PROJECT_DIR$/nan-cebo-common/nan-cebo-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nan-cebo-model/nan-cebo-model.iml" filepath="$PROJECT_DIR$/nan-cebo-model/nan-cebo-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nan-cebo-utils/nan-cebo-utils.iml" filepath="$PROJECT_DIR$/nan-cebo-utils/nan-cebo-utils.iml" />
+    </modules>
+  </component>
+</project>

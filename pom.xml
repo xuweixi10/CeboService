@@ -98,7 +98,7 @@
     <version>${mybatis.spring.version}</version>
   </dependency>
 
-  <!-- fastjson -->
+  <!-- fastjson
   <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>fastjson</artifactId>
@@ -114,7 +114,7 @@
     <artifactId>jackson-dataformat-xml</artifactId>
     <version>${fastjson.dataformat.version}</version>
   </dependency>
-
+    -->
   <!-- junit -->
   <dependency>
     <groupId>junit</groupId>
