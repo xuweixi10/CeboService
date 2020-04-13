@@ -7,12 +7,6 @@
   <groupId>com.nan</groupId>
   <artifactId>cebo</artifactId>
   <version>1.0.0</version>
-  <modules>
-    <module>nan-cebo-common</module>
-    <module>nan-cebo-utils</module>
-    <module>nan-cebo-apis</module>
-    <module>nan-cebo-model</module>
-  </modules>
 
   <packaging>pom</packaging>
 
@@ -52,45 +46,8 @@
       <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
-  </dependencies>
-
-  <dependencyManagement>
-  <dependencies>
-
-    <dependency>
-      <groupId>com.nan</groupId>
-      <artifactId>nan-cebo-apis</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.nan</groupId>
-      <artifactId>nan-cebo-common</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.nan</groupId>
-      <artifactId>nan-cebo-model</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.nan</groupId>
-      <artifactId>nan-cebo-utils</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-
 
   <!--spring boot 处理包-->
-  <dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-jwt</artifactId>
-    <version>${spring.jwt.version}</version>
-  </dependency>
-  <dependency>
-    <groupId>org.reflections</groupId>
-    <artifactId>reflections</artifactId>
-    <version>${reflections.version}</version>
-  </dependency>
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
@@ -165,7 +122,6 @@
     <version>${junit.version}</version>
   </dependency>
   </dependencies>
-  </dependencyManagement>
 
   <build>
   <resources>
