@@ -37,11 +37,11 @@
 
     <fastjson.version>1.2.58</fastjson.version>
     <fastjson.dataformat.version>2.9.9</fastjson.dataformat.version>
-    <fastxml.databind.version>2.9.4</fastxml.databind.version>
+    <fastxml.databind.version>2.10.2</fastxml.databind.version>
 
     <codec.version>1.12</codec.version>
 
-    <nimbusds.jwt.version>5.14</nimbusds.jwt.version>
+    <nimbusds.jwt.version>8.8</nimbusds.jwt.version>
 
     <mail.version>1.6.4</mail.version>
     <mail.api.version>1.4.3</mail.api.version>
@@ -50,7 +50,7 @@
 
     <httpcore.version>4.4.1</httpcore.version>
     <jdom.version>1.1</jdom.version>
-    <netty.version>4.1.6.Final</netty.version>
+    <netty.version>4.1.42.Final</netty.version>
 
   </properties>
 
