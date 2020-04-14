@@ -1,337 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nan</groupId>
+  <artifactId>cebo</artifactId>
+  <version>1.0.0</version>
+
+  <packaging>pom</packaging>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.6.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>2.2.5.RELEASE</version>
   </parent>
-  <groupId>xzydemo</groupId>
-  <artifactId>demo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>demo</name>
-  <description>Demo project for Spring Boot</description>
 
   <properties>
-    <java.version>1.8</java.version>
+    <!-- 项目源码及编译输出的编码 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- 项目编译JDK版本 -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <!-- 依赖包版本管理 -->
+    <spring.boot.version>2.2.5.RELEASE</spring.boot.version>
+    <spring.websocket.version>2.1.6.RELEASE</spring.websocket.version>
+
+    <lombok.version>1.18.8</lombok.version>
+
+    <mysql.version>5.1.47</mysql.version>
+    <mybatis.spring.version>2.0.1</mybatis.spring.version>
+
+    <junit.version>4.12</junit.version>
+
+    <fastjson.version>1.2.58</fastjson.version>
+    <fastjson.dataformat.version>2.9.9</fastjson.dataformat.version>
+    <fastxml.databind.version>2.9.4</fastxml.databind.version>
+
+    <codec.version>1.12</codec.version>
+
+    <nimbusds.jwt.version>5.14</nimbusds.jwt.version>
+
+    <mail.version>1.6.4</mail.version>
+    <mail.api.version>1.4.3</mail.api.version>
+
+    <aliyun.oss.version>3.8.0</aliyun.oss.version>
+
+    <httpcore.version>4.4.1</httpcore.version>
+    <jdom.version>1.1</jdom.version>
+    <netty.version>4.1.6.Final</netty.version>
+
   </properties>
 
   <dependencies>
+
+
+
+    <!--spring boot 处理包-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis.spring.boot</groupId>
-      <artifactId>mybatis-spring-boot-starter</artifactId>
-      <version>2.0.1</version>
+      <artifactId>spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${spring.boot.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <scope>runtime</scope>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <!-- 排除默认的logback日志，使用log4j-->
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${spring.boot.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.nimbusds</groupId>
-      <artifactId>nimbus-jose-jwt</artifactId>
-      <version>5.14</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.9.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-websocket</artifactId>
-      <version>2.1.6.RELEASE</version>
+      <version>${spring.websocket.version}</version>
+    </dependency>
+
+    <!--lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--log4j2日志-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+
+    <!-- Mysql 数据库 -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis.spring.version}</version>
+    </dependency>
+
+    <!-- junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+
+    <!-- fastjson -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-cbor</artifactId>
+      <version>${fastjson.dataformat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>${fastjson.dataformat.version}</version>
+    </dependency>
+
+<!--    fastxml-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${fastxml.databind.version}</version>
+    </dependency>
+
+<!--    加密解密-->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>${codec.version}</version>
+    </dependency>
+
+<!--    jwt-->
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>${nimbusds.jwt.version}</version>
+    </dependency>
+
+<!--    邮件-->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>smtp</artifactId>
+      <version>${mail.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.mail/mailapi -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mailapi</artifactId>
+      <version>${mail.api.version}</version>
+    </dependency>
+
+<!--    阿里oss-->
+    <dependency>
+      <groupId>com.aliyun.oss</groupId>
+      <artifactId>aliyun-sdk-oss</artifactId>
+      <version>${aliyun.oss.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpcore.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>${httpcore.version}</version>
+    </dependency>
+
+<!--    jdom-->
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom</artifactId>
+      <version>${jdom.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.12</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.mail</groupId>
-      <artifactId>smtp</artifactId>
-      <version>1.6.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.mail/mailapi -->
-    <dependency>
-      <groupId>javax.mail</groupId>
-      <artifactId>mailapi</artifactId>
-      <version>1.4.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
-    <dependency>
-      <groupId>com.aliyun.oss</groupId>
-      <artifactId>aliyun-sdk-oss</artifactId>
-      <version>3.8.0</version>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.4.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcore</groupId>
-      <artifactId>httpcore</artifactId>
-      <version>4.4.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom</artifactId>
-      <version>1.1</version>
-    </dependency>
-    <dependency>
 
+<!--    netty-->
+    <dependency>
       <groupId>io.netty</groupId>
-
       <artifactId>netty-all</artifactId>
-
-      <version>4.1.6.Final</version>
-
+      <version>${netty.version}</version>
     </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.9</version>
-    </dependency>
-
 
 
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <useDefaultDelimiters>true</useDefaultDelimiters>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
 
 </project>
-        <!--<?xml version="1.0" encoding="UTF-8"?>-->
-        <!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
-        <!--  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-        <!--  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
-        <!--  <modelVersion>4.0.0</modelVersion>-->
-
-        <!--  <groupId>com.nan</groupId>-->
-        <!--  <artifactId>cebo</artifactId>-->
-        <!--  <version>1.0.0</version>-->
-
-        <!--  <packaging>pom</packaging>-->
-        <!--  <properties>-->
-        <!--    <java.version>1.8</java.version>-->
-        <!--  </properties>-->
-        <!--  <dependencies>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework.boot</groupId>-->
-        <!--      <artifactId>spring-boot-starter-jdbc</artifactId>-->
-        <!--    </dependency>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework.boot</groupId>-->
-        <!--      <artifactId>spring-boot-starter-web</artifactId>-->
-        <!--    </dependency>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.mybatis.spring.boot</groupId>-->
-        <!--      <artifactId>mybatis-spring-boot-starter</artifactId>-->
-        <!--      <version>2.0.1</version>-->
-        <!--    </dependency>-->
-
-        <!--    <dependency>-->
-        <!--      <groupId>mysql</groupId>-->
-        <!--      <artifactId>mysql-connector-java</artifactId>-->
-        <!--      <scope>runtime</scope>-->
-        <!--    </dependency>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework.boot</groupId>-->
-        <!--      <artifactId>spring-boot-starter-test</artifactId>-->
-        <!--      <scope>test</scope>-->
-        <!--    </dependency>-->
-        <!--  <parent>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-starter-parent</artifactId>-->
-        <!--    <version>2.2.5.RELEASE</version>-->
-        <!--  </parent>-->
-        <!--  <properties>-->
-        <!--    &lt;!&ndash; 项目源码及编译输出的编码 &ndash;&gt;-->
-        <!--    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-        <!--    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-        <!--    &lt;!&ndash; 项目编译JDK版本 &ndash;&gt;-->
-        <!--    <maven.compiler.source>1.8</maven.compiler.source>-->
-        <!--    <maven.compiler.target>1.8</maven.compiler.target>-->
-
-        <!--    &lt;!&ndash; 依赖包版本管理 &ndash;&gt;-->
-        <!--    <spring.boot.version>2.2.5.RELEASE</spring.boot.version>-->
-        <!--    <lombok.version>1.18.8</lombok.version>-->
-        <!--    <mysql.version>5.1.47</mysql.version>-->
-        <!--    <mybatis.spring.version>2.0.1</mybatis.spring.version>-->
-        <!--    <junit.version>4.12</junit.version>-->
-        <!--    <fastjson.version>1.2.58</fastjson.version>-->
-        <!--    <fastjson.dataformat.version>2.9.9</fastjson.dataformat.version>-->
-        <!--  </properties>-->
-
-        <!--  <dependencies>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework.boot</groupId>-->
-        <!--      <artifactId>spring-boot-starter-log4j2</artifactId>-->
-        <!--    </dependency>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.projectlombok</groupId>-->
-        <!--      <artifactId>lombok</artifactId>-->
-        <!--      <version>${lombok.version}</version>-->
-        <!--      <scope>provided</scope>-->
-        <!--    </dependency>-->
-
-        <!--  &lt;!&ndash;spring boot 处理包&ndash;&gt;-->
-        <!--  <dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-starter-web</artifactId>-->
-
-        <!--    &lt;!&ndash; 排除默认的logback日志，使用log4j&ndash;&gt;-->
-        <!--    <exclusions>-->
-        <!--      <exclusion>-->
-        <!--        <groupId>org.slf4j</groupId>-->
-        <!--        <artifactId>slf4j-log4j12</artifactId>-->
-        <!--      </exclusion>-->
-        <!--    </exclusions>-->
-        <!--    <version>${spring.boot.version}</version>-->
-        <!--  </dependency>-->
-        <!--  <dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-starter</artifactId>-->
-        <!--    <exclusions>-->
-        <!--      <exclusion>-->
-        <!--        <groupId>org.slf4j</groupId>-->
-        <!--        <artifactId>slf4j-log4j12</artifactId>-->
-        <!--      </exclusion>-->
-        <!--    </exclusions>-->
-        <!--    <version>${spring.boot.version}</version>-->
-        <!--  </dependency>-->
-        <!--    &lt;!&ndash;mybatis&ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.mybatis.spring.boot</groupId>-->
-        <!--      <artifactId>mybatis-spring-boot-starter</artifactId>-->
-        <!--      <version>2.0.1</version>-->
-        <!--    </dependency>-->
-        <!--  &lt;!&ndash; Mysql 数据库 &ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>mysql</groupId>-->
-        <!--      <artifactId>mysql-connector-java</artifactId>-->
-        <!--      <scope>runtime</scope>-->
-        <!--    </dependency>-->
-        <!--  <dependency>-->
-        <!--    <groupId>org.mybatis</groupId>-->
-        <!--    <artifactId>mybatis-spring</artifactId>-->
-        <!--    <version>${mybatis.spring.version}</version>-->
-        <!--  </dependency>-->
-
-        <!-- fastjson
-        <dependency>
-          <groupId>com.alibaba</groupId>
-          <artifactId>fastjson</artifactId>
-          <version>${fastjson.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>com.fasterxml.jackson.dataformat</groupId>
-          <artifactId>jackson-dataformat-cbor</artifactId>
-          <version>${fastjson.dataformat.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>com.fasterxml.jackson.dataformat</groupId>
-          <artifactId>jackson-dataformat-xml</artifactId>
-          <version>${fastjson.dataformat.version}</version>
-        </dependency>
-          -->
-        <!-- junit -->
-        <!--  <dependency>-->
-        <!--    <groupId>junit</groupId>-->
-        <!--    <artifactId>junit</artifactId>-->
-        <!--    <version>${junit.version}</version>-->
-        <!--  </dependency>-->
-        <!--  </dependencies>-->
-
-        <!--  <build>-->
-        <!--  <resources>-->
-        <!--    <resource>-->
-        <!--      <directory>src/main/resources</directory>-->
-        <!--      <includes>-->
-        <!--        <include>**/*.*</include>-->
-        <!--      </includes>-->
-        <!--      <filtering>true</filtering>-->
-        <!--    </resource>-->
-        <!--  </resources>-->
-
-        <!--  <testResources>-->
-        <!--    <testResource>-->
-        <!--      <directory>src/test/resources</directory>-->
-        <!--      <filtering>true</filtering>-->
-        <!--    </testResource>-->
-        <!--  </testResources>-->
-
-        <!--  <pluginManagement>-->
-        <!--    <plugins>-->
-        <!--      <plugin>-->
-        <!--        <groupId>org.springframework.boot</groupId>-->
-        <!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
-        <!--        <executions>-->
-        <!--          <execution>-->
-        <!--            <goals>-->
-        <!--              <goal>repackage</goal>-->
-        <!--            </goals>-->
-        <!--          </execution>-->
-        <!--        </executions>-->
-        <!--      </plugin>-->
-        <!--    </plugins>-->
-        <!--  </pluginManagement>-->
-
-        <!--  <plugins>-->
-        <!--  <plugin>-->
-        <!--    <artifactId>maven-resources-plugin</artifactId>-->
-        <!--    <configuration>-->
-        <!--      <useDefaultDelimiters>true</useDefaultDelimiters>-->
-        <!--    </configuration>-->
-        <!--  </plugin>-->
-
-        <!--    <plugin>-->
-        <!--      <groupId>org.apache.maven.plugins</groupId>-->
-        <!--      <artifactId>maven-compiler-plugin</artifactId>-->
-        <!--      <version>3.7.0</version>-->
-        <!--      <configuration>-->
-        <!--        <source>${java.version}</source>-->
-        <!--        <target>${java.version}</target>-->
-        <!--      </configuration>-->
-        <!--    </plugin>-->
-        <!--  </plugins>-->
-        <!--  </build>-->
-
-
-
-        <!--</project>-->
