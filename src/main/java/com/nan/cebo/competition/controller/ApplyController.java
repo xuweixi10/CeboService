@@ -1,5 +1,7 @@
 package com.nan.cebo.competition.controller;
 
+import com.nan.cebo.competition.domain.apply.ApplyDataBase;
+import com.nan.cebo.competition.domain.apply.ApplyFormData;
 import com.nan.cebo.competition.service.Impl.ApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,10 @@ public class ApplyController {
     private ApplyService applyService;
 
     @ResponseBody
-    @RequestMapping(value = "/addNewAccount",method={RequestMethod.GET})
-    public String getCompetitionInformation(@RequestParam("competitionId") String competitionId){
-        return applyService.getApplyInformationId(competitionId);
+    @RequestMapping(value = "/getApplyInformation",method={RequestMethod.GET})
+    public ApplyFormData getCompetitionInformation(@RequestParam("competitionId") String competitionId){
+        ApplyDataBase applyDataBase=applyService.getDataBase(competitionId);
+        return applyService.dataBaseToFormData(applyDataBase);
     }
 
 
