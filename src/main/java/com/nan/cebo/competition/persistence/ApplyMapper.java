@@ -1,5 +1,9 @@
 package com.nan.cebo.competition.persistence;
 
+import com.nan.cebo.competition.domain.apply.ApplyDataBase;
+import com.nan.cebo.competition.domain.apply.ApplyType;
+import com.nan.cebo.competition.persistence.annotation.InterceptMethod;
+
 /**
  * @author xuxiaoxi10
  * @version 1.0
@@ -11,5 +15,15 @@ public interface ApplyMapper {
      * @param competitionId 比赛id
      * @return 比赛报名所有信息的id
      */
-    String getInformation(String competitionId);
+    ApplyDataBase getInformation(String competitionId);
+
+    /**
+     * 获取指定表的细节
+     * @param type 类型
+     * @param tableName 表名
+     * @param id 类型id
+     * @return ApplyType 父类型
+     */
+    @InterceptMethod
+    ApplyType getApplyDetails(byte type,String tableName,String id);
 }
