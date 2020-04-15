@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -8,7 +7,6 @@
   <artifactId>cebo</artifactId>
   <version>1.0.0</version>
 
-  <packaging>pom</packaging>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -35,6 +33,8 @@
 
     <junit.version>4.12</junit.version>
 
+    <lang3.version>3.5</lang3.version>
+
     <fastjson.version>1.2.58</fastjson.version>
     <fastjson.dataformat.version>2.9.9</fastjson.dataformat.version>
     <fastxml.databind.version>2.10.2</fastxml.databind.version>
@@ -55,8 +55,6 @@
   </properties>
 
   <dependencies>
-
-
 
     <!--spring boot 处理包-->
     <dependency>
@@ -140,6 +138,13 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+    </dependency>
+
+<!--    lang3-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${lang3.version}</version>
     </dependency>
 
     <!-- fastjson -->
@@ -251,23 +256,20 @@
       </testResource>
     </testResources>
 
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
     <plugins>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <configuration>

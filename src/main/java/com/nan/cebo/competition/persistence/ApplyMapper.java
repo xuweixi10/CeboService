@@ -3,12 +3,14 @@ package com.nan.cebo.competition.persistence;
 import com.nan.cebo.competition.domain.apply.ApplyDataBase;
 import com.nan.cebo.competition.domain.apply.ApplyType;
 import com.nan.cebo.competition.persistence.annotation.InterceptMethod;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author xuxiaoxi10
  * @version 1.0
  * @date 2020/4/13 23:37
  */
+@Mapper
 public interface ApplyMapper {
     /**
      *  like {1,2,3,4}

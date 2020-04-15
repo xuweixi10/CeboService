@@ -3,6 +3,12 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cebo" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ceboService" target="1.8" />
@@ -14,7 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cebo" options="" />
+      <module name="cebo" options="-parameters" />
       <module name="nan-cebo-apis" options="-parameters" />
       <module name="nan-cebo-common" options="-parameters" />
       <module name="nan-cebo-model" options="-parameters" />

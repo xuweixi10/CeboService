@@ -2,7 +2,7 @@
 
 <configuration>
   <properties>
-    <property name="CONSOLE_PATTERN">${log.pattern}</property>
+    <property name="CONSOLE_PATTERN">%d{DEFAULT} %sn [%level] -%t |%c|%M| -%msg%n</property>
     <property name="FILE_NAME">${project.build.finalName}</property>
   </properties>
   <!--先定义所有的appender-->
@@ -30,7 +30,7 @@
     <logger name="org.apache.kafka" level="INFO"></logger>
     <logger name="com.netflix.discovery" level="INFO"></logger>
     <logger name="org.hibernate" level="INFO"></logger>
-    <root level="${log.level}">
+    <root level="ALL">
       <appender-ref ref="Console"/>
       <appender-ref ref="RollingFileInfo"/>
     </root>
