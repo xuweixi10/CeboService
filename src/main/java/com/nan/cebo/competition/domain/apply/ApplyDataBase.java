@@ -14,6 +14,8 @@ public class ApplyDataBase {
     private String capapplyInformationId;
     private String perapplyType;
     private String perapplyInformationId;
+    private String comapplyType;
+    private String comapplyInformationId;
 
     public String getCompetitionId() {
         return competitionId;
@@ -69,5 +71,21 @@ public class ApplyDataBase {
 
     public void setPerapplyInformationId(String perapplyInformationId) {
         this.perapplyInformationId = perapplyInformationId;
+    }
+
+    public String getComapplyType() {
+        return comapplyType;
+    }
+
+    public void setComapplyType(String comapplyType) {
+        this.comapplyType = comapplyType;
+    }
+
+    public String getComapplyInformationId() {
+        return comapplyInformationId;
+    }
+
+    public void setComapplyInformationId(String comapplyInformationId) {
+        this.comapplyInformationId = comapplyInformationId;
     }
 }

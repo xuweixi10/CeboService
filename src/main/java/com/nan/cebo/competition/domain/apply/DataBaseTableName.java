@@ -1,7 +1,9 @@
 package com.nan.cebo.competition.domain.apply;
 
 import com.nan.cebo.competition.domain.apply.type.NormalType;
+import com.nan.cebo.competition.domain.apply.type.PickerType;
 import com.nan.cebo.competition.domain.apply.type.RadioType;
+import com.nan.cebo.competition.domain.apply.type.TextareaType;
 
 /**
  * 映射数据库对应表
@@ -12,7 +14,10 @@ import com.nan.cebo.competition.domain.apply.type.RadioType;
  */
 public enum DataBaseTableName {
     NORMAL("apply_normalType",(byte) 0, new NormalType()),
-    RADIO("apply_radioType",(byte) 1, new RadioType());
+    RADIO("apply_radioType",(byte) 1, new RadioType()),
+    PICKER("apply_pickerType",(byte) 2, new PickerType()),
+    TEXTAREA("apply_textAreaType",(byte) 3, new TextareaType());
+
     private String tableName;
     private byte code;
     private ApplyType type;
