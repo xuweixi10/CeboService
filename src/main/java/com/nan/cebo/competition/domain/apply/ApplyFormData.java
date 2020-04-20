@@ -13,6 +13,7 @@ public class ApplyFormData {
     private int maxPeople;
     private ArrayList<ApplyType> capApplyType=new ArrayList<ApplyType>();
     private ArrayList<ApplyType> perApplyType=new ArrayList<ApplyType>();
+    private ArrayList<ApplyType> comApplyType=new ArrayList<ApplyType>();
 
     public String getCompetitionId() {
         return competitionId;
@@ -52,5 +53,13 @@ public class ApplyFormData {
 
     public void setPerApplyType(ArrayList<ApplyType> perApplyType) {
         this.perApplyType = perApplyType;
+    }
+
+    public ArrayList<ApplyType> getComApplyType() {
+        return comApplyType;
+    }
+
+    public void setComApplyType(ArrayList<ApplyType> comApplyType) {
+        this.comApplyType = comApplyType;
     }
 }

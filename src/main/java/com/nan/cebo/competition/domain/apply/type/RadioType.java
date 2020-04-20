@@ -9,9 +9,9 @@ import com.nan.cebo.competition.domain.apply.ApplyType;
  */
 public class RadioType implements ApplyType {
     private String name;
-    private int count;
     private String radioName;
     private int type;
+    private String inputName;
 
     @Override
     public String toJson() {
@@ -27,7 +27,6 @@ public class RadioType implements ApplyType {
 
     }
     public RadioType(String name,int count,String radioName){
-        this.count=count;
         this.name=name;
         this.radioName=radioName;
     }
@@ -37,14 +36,6 @@ public class RadioType implements ApplyType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getRadioName() {
@@ -61,5 +52,13 @@ public class RadioType implements ApplyType {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getInputName() {
+        return inputName;
+    }
+
+    public void setInputName(String inputName) {
+        this.inputName = inputName;
     }
 }
