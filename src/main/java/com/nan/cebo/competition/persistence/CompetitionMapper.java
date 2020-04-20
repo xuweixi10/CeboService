@@ -1,5 +1,7 @@
 package com.nan.cebo.competition.persistence;
 
+import com.nan.cebo.competition.domain.competition.Competition;
+import com.nan.cebo.competition.domain.competition.CompetitionDetail;
 import com.nan.cebo.competition.domain.competition.IndexPic;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,7 +19,26 @@ public interface CompetitionMapper {
    */
   List<IndexPic> getIndexSwiperImage();
 
+  /**
+   * @param beginIndex 分页的开始页数
+   * @return 竞赛基本信息列表
+   */
+  List<Competition> getCompetitionBasic(int beginIndex);
 
+  /**
+   * @return 全部竞赛信息列表
+   */
+  List<Competition> getCompetitionBasicAll();
 
+  /**
+   * @param compId 竞赛Id
+   * @return 竞赛基本信息
+   */
+  Competition getCompetitionBasicById(String compId);
 
+  /**
+   * @param compId 竞赛Id
+   * @return 竞赛详细信息列表
+   */
+  List<CompetitionDetail> getCompetitionDetailById(String compId);
 }

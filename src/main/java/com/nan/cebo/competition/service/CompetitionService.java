@@ -1,5 +1,6 @@
 package com.nan.cebo.competition.service;
 
+import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.IndexPic;
 import java.util.List;
 
@@ -11,4 +12,11 @@ import java.util.List;
 public interface CompetitionService {
   List<IndexPic> getIndexPic();
 
+  List<Competition> getCompetionBasic(int page);
+
+  List<Competition> getCompetionBasicAll();
+
+  Competition getCompetionDetail(String compId);
+
+  Competition getCompetionBasic(String compId);
 }

@@ -2,9 +2,15 @@ package com.nan.cebo.competition.controller;
 
 import com.nan.cebo.apis.competition.v1.CompetitionControllerApi;
 import com.nan.cebo.common.response.dtos.ResponseResult;
+import com.nan.cebo.common.response.enums.AppHttpCodeEnum;
+import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.service.CompetitionService;
+import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,13 +26,48 @@ public class CompetitionController implements CompetitionControllerApi {
   CompetitionService competitionService;
 
   @Override
-  @RequestMapping("/index/swiperImage")
+  @RequestMapping(value = "/index/swiperImage",method = {RequestMethod.GET})
   public ResponseResult loadIndexImage() {
     return ResponseResult.okResult(competitionService.getIndexPic());
   }
 
   @Override
-  public ResponseResult loadCompBasic(Integer page) {
-    return null;
+  @RequestMapping(value = "/basic",method = {RequestMethod.GET})
+  public ResponseResult loadCompBasic(@RequestParam(value = "page",required = false) Integer page) {
+    if (page==null){
+      return ResponseResult.okResult(competitionService.getCompetionBasicAll());
+    }
+    else if (page >0){
+      return ResponseResult.okResult(competitionService.getCompetionBasic(page));
+    }
+    else {
+      return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID,"页码错误");
+    }
+  }
+
+  @Override
+  @RequestMapping(value = "/basic/{compId}",method = {RequestMethod.GET})
+  public ResponseResult loadCompBasic(@PathVariable("compId") String compId) {
+    if (compId==null){
+      return ResponseResult.okResult(competitionService.getCompetionBasicAll());
+    }
+    Competition competionBasic = competitionService.getCompetionBasic(compId);
+    if (competionBasic==null){
+      return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST,"找不到对应Id的竞赛");
+    }
+    return ResponseResult.okResult(competionBasic);
+  }
+
+  @Override
+  @RequestMapping(value = "/detail",method = {RequestMethod.GET})
+  public ResponseResult loadCompDetail(@RequestParam("compId") @NotNull String compId) {
+    if (compId==null){
+      return loadCompBasic((Integer)(null));
+    }
+    Competition competition = competitionService.getCompetionDetail(compId);
+    if (competition == null) {
+      return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST, "找不到对应Id的竞赛");
+    }
+    return ResponseResult.okResult(competition);
   }
 }

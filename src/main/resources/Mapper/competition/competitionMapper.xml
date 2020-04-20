@@ -3,19 +3,74 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nan.cebo.competition.persistence.CompetitionMapper">
 
-  <resultMap id="resultMap" type="com.nan.cebo.competition.domain.competition.IndexPic">
+  <resultMap id="resultMap_pic" type="com.nan.cebo.competition.domain.competition.IndexPic">
     <id column="id" property="id"/>
     <result column="comp_id" property="compId"/>
     <result column="pic_name" property="picName"/>
     <result column="pic_url" property="picURL"/>
   </resultMap>
-  <sql id="Base_Column_List">
+
+  <resultMap id="resultMap_comp" type="com.nan.cebo.competition.domain.competition.Competition">
+    <id column="id" property="id"/>
+    <result column="comp_name" property="compName"/>
+    <result column="organizer" property="organizer"/>
+    <result column="co_organizer" property="coOrganizer"/>
+    <result column="comp_type" property="compType"/>
+    <result column="apply_bdate" property="applyBeginDate" jdbcType="DATE" javaType="java.util.Date"/>
+    <result column="apply_edate" property="applyEndDate" jdbcType="DATE" javaType="java.util.Date"/>
+    <result column="object" property="object"/>
+
+  </resultMap>
+
+  <resultMap id="resultMap_comp_detail" type="com.nan.cebo.competition.domain.competition.CompetitionDetail">
+    <id column="id" property="id"/>
+    <result column="comp_id" property="compId"/>
+    <result column="detail_name" property="detailName"/>
+    <result column="content_url" property="contentURL"/>
+  </resultMap>
+
+  <sql id="Base_Column_List_comp">
+    id,comp_name,organizer,co_organizer,comp_type,apply_bdate,apply_edate,object
+  </sql>
+
+  <sql id="Base_Column_List_comp_detail">
+    id, comp_id,detail_name,content_url
+  </sql>
+
+  <sql id="Base_Column_List_pic">
     id, comp_id,pic_name,pic_url
   </sql>
 
-  <select id="getIndexSwiperImage" resultMap="resultMap">
+  <select id="getIndexSwiperImage" resultMap="resultMap_pic">
     SELECT
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List_pic"/>
     FROM index_pic
+  </select>
+
+  <select id="getCompetitionBasic" resultMap="resultMap_comp">
+    SELECT
+    <include refid="Base_Column_List_comp"/>
+    FROM competition
+    LIMIT #{beginIndex} , 10
+  </select>
+
+  <select id="getCompetitionBasicAll" resultMap="resultMap_comp">
+    SELECT
+    <include refid="Base_Column_List_comp"/>
+    FROM competition
+  </select>
+
+  <select id="getCompetitionBasicById" resultMap="resultMap_comp">
+    SELECT
+    <include refid="Base_Column_List_comp"/>
+    FROM competition
+    where id=#{compId}
+  </select>
+
+  <select id="getCompetitionDetailById" resultMap="resultMap_comp_detail">
+    SELECT
+    <include refid="Base_Column_List_comp_detail"/>
+    FROM comp_detail
+    WHERE comp_id=#{compId}
   </select>
 </mapper>

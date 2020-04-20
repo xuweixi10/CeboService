@@ -1,10 +1,10 @@
 package com.nan.cebo.common.response.dtos;
 
-import static org.junit.Assert.*;
-
 import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.CompetitionDetail;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.junit.Test;
 
 /**
@@ -23,13 +23,15 @@ public class ResponseResultTest {
     competition.setOrganizer("asda");
     competition.setCoOrganizer("sdsd");
     competition.setCompType("qweqwe");
-    competition.setApplyBgeinDate(new Date());
+    competition.setApplyBeginDate(new Date());
     competition.setApplyEndDate(new Date());
     CompetitionDetail cd=new CompetitionDetail();
     cd.setCompId("201903030003");
     cd.setContentURL("asdasd");
     cd.setDetailName("gfhfg");
-    competition.setCompetitionDetail(cd);
+    List<CompetitionDetail>cds=new ArrayList<>();
+    cds.add(cd);
+    competition.setCompetitionDetail(cds);
     ResponseResult responseResult = ResponseResult.okResult(competition);
     System.out.println(responseResult);
   }

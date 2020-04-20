@@ -1,6 +1,7 @@
 package com.nan.cebo.competition.domain.competition;
 
 import java.util.Date;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -15,8 +16,13 @@ public class Competition {
   private String organizer;
   private String coOrganizer;
   private String compType;
-  private Date applyBgeinDate;
+  private Date applyBeginDate;
   private Date applyEndDate;
   private String object;
-  private CompetitionDetail competitionDetail;
+  private List<CompetitionDetail> competitionDetail;
+
+  public Competition() {
+  }
+
+
 }

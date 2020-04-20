@@ -32,7 +32,7 @@
     <logger name="org.hibernate" level="INFO"></logger>
     <root level="ALL">
       <appender-ref ref="Console"/>
-      <appender-ref ref="RollingFileInfo"/>
+<!--      <appender-ref ref="RollingFileInfo"/>  是否打印日志到文件-->
     </root>
   </loggers>
 </configuration>
