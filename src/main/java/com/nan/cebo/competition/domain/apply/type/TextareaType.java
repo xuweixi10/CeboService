@@ -5,34 +5,29 @@ import com.nan.cebo.competition.domain.apply.ApplyType;
 /**
  * @author xuxiaoxi10
  * @version 1.0
- * @date 2020/4/14 19:18
+ * @date 2020/4/18 11:12
  */
-public class NormalType implements ApplyType {
+public class TextareaType implements ApplyType {
     private String name;
-    private String maxLength;
-    private String type;
+    private int type;
     private String inputName;
-    public NormalType(){
+    public TextareaType(){
 
-    }
-    public NormalType(String name,String maxLength){
-        this.name=name;
-        this.maxLength=maxLength;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getMaxLength() {
-        return maxLength;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -45,7 +40,7 @@ public class NormalType implements ApplyType {
     }
 
     @Override
-    public String toJson(){
+    public String toJson() {
         return null;
     }
 

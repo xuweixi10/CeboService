@@ -11,4 +11,19 @@
     <select id="getApplyDetails" parameterType="java.lang.String" resultType="com.nan.cebo.competition.domain.apply.ApplyType">
         SELECT * FROM ${tableName}  WHERE `id`=#{id}
     </select>
+    <select id="insertTeamId" parameterType="java.lang.String">
+        insert into `teaminformation` (`teamId`,`userId`,`competitionId`)
+        values(#{teamId},#{userId},#{competitionId})
+    </select>
+    <select id="getCompetitionId" parameterType="java.lang.String" resultType="com.nan.cebo.competition.domain.apply.view.TeamCompetition">
+        SELECT * FROM `teamInformation` WHERE `teamId`=#{teamId}
+    </select>
+    <select id="insertTeamData" parameterType="com.nan.cebo.competition.domain.apply.submit.PersonDataBase">
+        insert into ${tableName} (`teamId`,`name`,`value`)
+        values(#{data.teamId},#{data.name},#{data.value})
+    </select>
+    <select id="insertPeronData">
+        insert into ${tableName} (`teamId`,`personId`,`name`,`value`)
+        values(#{data.teamId},#{index},#{data.name},#{data.value})
+    </select>
 </mapper>
