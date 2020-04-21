@@ -51,7 +51,7 @@
     SELECT
     <include refid="Base_Column_List_comp"/>
     FROM competition
-    LIMIT #{beginIndex} , 10
+    LIMIT #{beginIndex} , 6
   </select>
 
   <select id="getCompetitionBasicAll" resultMap="resultMap_comp">

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompetitionServiceImpl implements CompetitionService {
 
-  private static final int ITEMS_NUM_OF_EACH_PAGE=10;
+  private static final int ITEMS_NUM_OF_EACH_PAGE=6;
 
   @Autowired
   CompetitionMapper competitionMapper;

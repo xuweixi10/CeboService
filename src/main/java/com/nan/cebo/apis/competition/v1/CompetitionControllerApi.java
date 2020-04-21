@@ -20,7 +20,7 @@ public interface CompetitionControllerApi {
   /**
    * @description 返回竞赛基本信息
    * @method GET
-   * @param page 页数，用于分页查看（默认每页10条），若参数为空则全部返回（甚重)
+   * @param page 页数，用于分页查看（默认每页6条），若参数为空则全部返回（甚重)
    * @return 竞赛基本信息列表
    */
   public ResponseResult loadCompBasic(Integer page);
