@@ -8,8 +8,10 @@ import com.nan.cebo.competition.domain.apply.submit.PersonDataBase;
 import com.nan.cebo.competition.domain.apply.submit.SubmitData;
 import com.nan.cebo.competition.domain.apply.submit.TeamData;
 import com.nan.cebo.competition.domain.apply.view.TeamCompetition;
+import com.nan.cebo.competition.domain.apply.view.ViewPerson;
 import com.nan.cebo.competition.persistence.ApplyMapper;
 import com.nan.cebo.competition.service.ApplyService;
+import com.nan.cebo.signup.domain.ApplyCompetition;
 import com.nan.cebo.utils.competition.apply.MixAll;
 import com.nan.cebo.utils.competition.apply.TeamIdGenerate;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * @author xuxiaoxi10
@@ -93,6 +96,7 @@ public class ApplyServiceImpl implements ApplyService {
                 int i=0;
                 for(ArrayList<TeamData> singleData:perData){
                     insertTeamData(singleData,teamId,"perapplyinformation",i);
+                    i++;
                 }
                 ArrayList<TeamData> comData=data.getCompetitionData();
                 insertTeamData(comData,teamId,"comapplyinformation");
@@ -103,6 +107,31 @@ public class ApplyServiceImpl implements ApplyService {
         }
         return null;
 
+    }
+    @Override
+    public ArrayList<ApplyCompetition> getUserCompetitions(String userId){
+        ArrayList<ApplyCompetition> competitions=applyMapper.getUserAllCompetition(userId);
+        for(ApplyCompetition applyCompetition:competitions){
+            String name=applyMapper.getCompetitionName(applyCompetition.getCompetitionId());
+            applyCompetition.setCompetitionName(name);
+        }
+        return competitions;
+    }
+    @Override
+    public SubmitData getApplyDetails(String teamId) {
+        SubmitData submitData=new SubmitData();
+        try {
+            ArrayList<TeamData> competitionApply=applyMapper.getCompetitionInfor(teamId,"comapplyinformation");
+            ArrayList<TeamData> captainApply=applyMapper.getCompetitionInfor(teamId,"capapplyinformation");
+            ArrayList<ViewPerson> personApply=applyMapper.getPersonInfor(teamId);
+            ArrayList<ArrayList<TeamData>> perApplyData=viewPersonToTeamData(personApply);
+            submitData.setCapData(captainApply);
+            submitData.setCompetitionData(competitionApply);
+            submitData.setPersonData(perApplyData);
+        }catch (Exception e){
+            log.error("error when get applyInformationDetails",e);
+        }
+        return submitData;
     }
 
     /**
@@ -160,4 +189,31 @@ public class ApplyServiceImpl implements ApplyService {
         PersonDataBase personDataBase=MixAll.teamDataToBase(data, teamId,tableName);
         applyMapper.insertPeronData(personDataBase,tableName,index);
     }
+
+    private ArrayList<ArrayList<TeamData>> viewPersonToTeamData(ArrayList<ViewPerson> persons){
+        ArrayList<ArrayList<TeamData>> personData=new ArrayList<>();
+        persons.sort(new Comparator<ViewPerson>() {
+            @Override
+            public int compare(ViewPerson o1, ViewPerson o2) {
+                if(o1==null||o2==null){
+                    return 0;
+                }else {
+                    return o1.getPersonId().compareTo(o2.getPersonId());
+                }
+            }
+        });
+        for(ViewPerson person:persons){
+            int index=Integer.parseInt(person.getPersonId());
+            if (personData.size() < index + 1) {
+                ArrayList<TeamData> data=new ArrayList<>();
+                personData.add(data);
+            }
+            TeamData data=new TeamData();
+            data.setName(person.getName());
+            data.setValue(person.getValue());
+            personData.get(index).add(data);
+        }
+        return personData;
+    }
+
 }

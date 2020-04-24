@@ -3,6 +3,9 @@ package com.nan.cebo.competition.service;
 import com.nan.cebo.competition.domain.apply.ApplyDataBase;
 import com.nan.cebo.competition.domain.apply.ApplyFormData;
 import com.nan.cebo.competition.domain.apply.submit.SubmitData;
+import com.nan.cebo.signup.domain.ApplyCompetition;
+
+import java.util.ArrayList;
 
 /**
  * @author xuxiaoxi10
@@ -31,4 +34,19 @@ public interface ApplyService {
      * @return 队伍id
      */
     String insertTeamData(SubmitData data);
+
+    /**
+     * 获取用户所有参加的比赛
+     * @param userId 用户id
+     * @return 所有参加的比赛
+     */
+    ArrayList<ApplyCompetition> getUserCompetitions(String userId);
+
+    /**
+     * 获取摸个比赛id的详细信息
+     * @param teamId 比赛id
+     * @return 原来提交的数据
+     */
+    SubmitData getApplyDetails(String teamId);
+
 }

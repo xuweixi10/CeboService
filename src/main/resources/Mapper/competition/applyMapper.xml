@@ -26,4 +26,18 @@
         insert into ${tableName} (`teamId`,`personId`,`name`,`value`)
         values(#{data.teamId},#{index},#{data.name},#{data.value})
     </select>
+    <select id="getUserAllCompetition" parameterType="java.lang.String" resultType="com.nan.cebo.signup.domain.ApplyCompetition">
+        SELECT `teamId`,`competitionId` FROM `teamInformation` WHERE `userId`=#{userId}
+    </select>
+
+    <select id="getCompetitionName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT `comp_name` FROM `competition` WHERE `id`=#{competitionId}
+    </select>
+    <select id="getCompetitionInfor" parameterType="java.lang.String" resultType="com.nan.cebo.competition.domain.apply.submit.TeamData">
+        SELECT * FROM ${tableName} WHERE `teamId`=#{teamId}
+    </select>
+
+    <select id="getPersonInfor" parameterType="java.lang.String" resultType="com.nan.cebo.competition.domain.apply.view.ViewPerson">
+        SELECT * FROM `perapplyinformation` WHERE `teamId`=#{teamId}
+    </select>
 </mapper>
