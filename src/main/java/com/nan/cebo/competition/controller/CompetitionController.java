@@ -7,6 +7,7 @@ import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.service.CompetitionService;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2020/4/15 15:38
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/api/competition/v1")
 public class CompetitionController implements CompetitionControllerApi {
 

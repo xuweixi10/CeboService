@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nan.cebo.recruit.persistence.RecruitMapper">
+
+  <resultMap id="resultMap" type="com.nan.cebo.recruit.domain.pojos.RecruitInfo">
+    <id column="id" property="id"/>
+    <result column="posted_id" property="postedId"/>
+    <result column="comp_name" property="compName"/>
+    <result column="wanted_person" property="wantedPerson"/>
+    <result column="introduction" property="introduction"/>
+    <result column="extra_info" property="extraInfo"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id,posted_id,comp_name,wanted_person,introduction,extra_info
+  </sql>
+  
+  <select id="getRecruitAll" resultMap="resultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM recruit_info
+  </select>
+
+  <select id="getRecruit" resultMap="resultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM recruit_info
+    LIMIT #{beginIndex} , 6
+  </select>
+
+</mapper>
