@@ -59,6 +59,11 @@ public class RecruitServiceImpl implements RecruitService {
     return recruitBasicVOs;
   }
 
+  @Override
+  public boolean removeRecruitById(String recruitId) {
+    return recruitMapper.deleteRecruitInfoById(recruitId);
+  }
+
   private HotCompetitionVO convertCompetition2HotComp(Competition competition){
     if(competition==null){
       return null;

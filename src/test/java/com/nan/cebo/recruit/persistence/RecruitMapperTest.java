@@ -29,5 +29,8 @@ public class RecruitMapperTest {
     System.out.println(recruitMapper.getRecruit(0));
   }
 
-
+  @Test
+  public void deleteRecruit(){
+    System.out.println(recruitMapper.deleteRecruitInfoById("2020042500017"));
+  }
 }

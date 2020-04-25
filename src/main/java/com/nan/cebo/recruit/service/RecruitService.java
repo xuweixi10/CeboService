@@ -17,4 +17,6 @@ public interface RecruitService {
   List<RecruitBasicVO> getRecruitBasicAll();
 
   List<RecruitBasicVO> getRecruitBasic(Integer page);
+
+  boolean removeRecruitById(String recruitId);
 }

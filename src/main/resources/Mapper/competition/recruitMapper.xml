@@ -29,4 +29,10 @@
     LIMIT #{beginIndex} , 6
   </select>
 
+  <delete id="deleteRecruitInfoById">
+    DELETE
+    FROM recruit_info
+    WHERE id=#{recruitId}
+  </delete>
+
 </mapper>

@@ -15,4 +15,6 @@ public interface RecruitMapper {
   List<RecruitInfo> getRecruitAll();
 
   List<RecruitInfo> getRecruit(int startIndex);
+
+  boolean deleteRecruitInfoById(String recruitId);
 }

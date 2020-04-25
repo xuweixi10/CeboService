@@ -23,4 +23,12 @@ public interface RecruitControllerApi {
    */
   public ResponseResult loadRecruitDetail(Integer page);
 
+  /**
+   * @description 删除一条招募消息，要求在请求头携带用户名密码
+   * @param recruitId 待删除的招募信息ID
+   * @method GET
+   * @return 成功与否
+   */
+  public ResponseResult deleteRecruitInfoById(String recruitId,String username,String password);
+
 }
