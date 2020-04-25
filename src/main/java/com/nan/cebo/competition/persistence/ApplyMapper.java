@@ -3,10 +3,16 @@ package com.nan.cebo.competition.persistence;
 import com.nan.cebo.competition.domain.apply.ApplyDataBase;
 import com.nan.cebo.competition.domain.apply.ApplyType;
 import com.nan.cebo.competition.domain.apply.submit.PersonDataBase;
+import com.nan.cebo.competition.domain.apply.submit.SubmitData;
+import com.nan.cebo.competition.domain.apply.submit.TeamData;
 import com.nan.cebo.competition.domain.apply.view.TeamCompetition;
+import com.nan.cebo.competition.domain.apply.view.ViewPerson;
 import com.nan.cebo.competition.persistence.annotation.InterceptMethod;
+import com.nan.cebo.signup.domain.ApplyCompetition;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.ArrayList;
 
 /**
  * @author xuxiaoxi10
@@ -50,10 +56,42 @@ public interface ApplyMapper {
     /**
      * 插入队伍信息
      * @param data 数据
+     * @param tableName 表名
      */
     void insertTeamData(@Param("data") PersonDataBase data,@Param("tableName")String tableName);
     /**
      *
      */
     void insertPeronData(@Param("data") PersonDataBase data, @Param("tableName")String tableName,@Param("index") int index);
+
+    /**
+     * 获取用户所有参加的比赛
+     * @param userId 用户id
+     * @return 所有比赛数据
+     */
+    ArrayList<ApplyCompetition> getUserAllCompetition(String userId);
+
+    /**
+     * 获取比赛名字
+     * @param competitionId 比赛id
+     * @return 比赛名字
+     */
+    String getCompetitionName(String competitionId);
+
+    /**
+     * 获取比赛信息
+     * @param teamId 队伍标识
+     * @param tableName 表名
+     * @return 队伍数据
+     */
+    ArrayList<TeamData> getCompetitionInfor(String teamId,String tableName);
+
+    /**
+     * 获取队员信息
+     * @param teamId 队伍id
+     * @return 所有队员信息
+     */
+    ArrayList<ViewPerson> getPersonInfor(String teamId);
+
+
 }
