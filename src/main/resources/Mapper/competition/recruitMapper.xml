@@ -34,5 +34,17 @@
     FROM recruit_info
     WHERE id=#{recruitId}
   </delete>
-
+  <insert id="insertRecruitInfo" parameterType="com.nan.cebo.recruit.domain.pojos.RecruitInfo">
+    insert into `recruit_info` (`id`,`posted_id`,`comp_name`,`wanted_person`,`introduction`,`extra_info`)
+    values(#{id},#{postedId},#{compName},#{wantedPerson},#{introduction},#{extraInfo})
+  </insert>
+  <select id="getUserAllRecruit" parameterType="java.lang.String" resultType="com.nan.cebo.recruit.domain.pojos.RecruitInfo" resultMap="resultMap">
+    SELECT
+      id,posted_id,comp_name,wanted_person,introduction,extra_info
+     FROM `recruit_info` WHERE `posted_id`=#{postId}
+  </select>
+  <select id="getRecruitDetails" parameterType="java.lang.String" resultType="com.nan.cebo.recruit.domain.pojos.RecruitInfo" resultMap="resultMap">
+    SELECT id,posted_id,comp_name,wanted_person,introduction,extra_info
+    FROM `recruit_info` WHERE `id`=#{id}
+  </select>
 </mapper>

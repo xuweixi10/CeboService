@@ -23,7 +23,7 @@ public class AccountController {
     @Autowired
     AccountService accountService;
     @ResponseBody
-    @RequestMapping(value = "/status",method = {RequestMethod.GET})
+    @RequestMapping(value = "/status",method = {RequestMethod.POST})
     public ResponseResult getAccountStatus(@RequestBody Account account){
         int re=accountService.checkAccountStatus(account.getUuid(),account.getNickName());
         return ResponseResult.okResult(re);

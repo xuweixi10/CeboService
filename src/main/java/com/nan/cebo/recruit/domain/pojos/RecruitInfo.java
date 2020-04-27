@@ -16,4 +16,51 @@ public class RecruitInfo {
   private String introduction;
   private String extraInfo;
 
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getPostedId() {
+    return postedId;
+  }
+
+  public void setPostedId(String postedId) {
+    this.postedId = postedId;
+  }
+
+  public String getCompName() {
+    return compName;
+  }
+
+  public void setCompName(String compName) {
+    this.compName = compName;
+  }
+
+  public String getWantedPerson() {
+    return wantedPerson;
+  }
+
+  public void setWantedPerson(String wantedPerson) {
+    this.wantedPerson = wantedPerson;
+  }
+
+  public String getIntroduction() {
+    return introduction;
+  }
+
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
+
+  public String getExtraInfo() {
+    return extraInfo;
+  }
+
+  public void setExtraInfo(String extraInfo) {
+    this.extraInfo = extraInfo;
+  }
 }

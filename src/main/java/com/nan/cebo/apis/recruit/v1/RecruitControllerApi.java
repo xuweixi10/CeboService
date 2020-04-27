@@ -1,6 +1,7 @@
 package com.nan.cebo.apis.recruit.v1;
 
 import com.nan.cebo.common.response.dtos.ResponseResult;
+import com.nan.cebo.recruit.domain.pojos.RecruitInfo;
 
 /**
  * @Description
@@ -30,5 +31,35 @@ public interface RecruitControllerApi {
    * @return 成功与否
    */
   public ResponseResult deleteRecruitInfoById(String recruitId,String username,String password);
+
+
+  /**
+   * POST 添加用户的招募信息
+   * @param recruitInfo 招募信息
+   * @return 是否插入成功。
+   */
+  ResponseResult addRecruitInfo(RecruitInfo recruitInfo);
+
+  /**
+   * GET
+   * 获取用户所有的招募信息
+   * @param userId 用户id
+   * @return list
+   */
+  ResponseResult getUserRecruits(String userId);
+
+  /**
+   * 获取招募详情
+   * @param postId 招募id
+   * @return 招募详情
+   */
+  ResponseResult getRecruitDetails(String postId);
+
+  /**
+   * 删除RecruitDetails
+   * @param id 帖子id
+   * @return
+   */
+  ResponseResult deleteRecruitInfo(String id,String userId);
 
 }
