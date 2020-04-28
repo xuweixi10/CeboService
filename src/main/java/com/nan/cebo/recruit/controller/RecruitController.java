@@ -4,18 +4,19 @@ import com.nan.cebo.apis.recruit.v1.RecruitControllerApi;
 import com.nan.cebo.common.config.EncodeConfig;
 import com.nan.cebo.common.response.dtos.ResponseResult;
 import com.nan.cebo.common.response.enums.AppHttpCodeEnum;
+import com.nan.cebo.recruit.domain.pojos.RecruitInfo;
 import com.nan.cebo.recruit.domain.vos.HotCompetitionVO;
+import com.nan.cebo.recruit.domain.vos.RecruitBasicVO;
 import com.nan.cebo.recruit.service.RecruitService;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import com.nan.cebo.signup.domain.Account;
+import com.nan.cebo.signup.service.AccountService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description
@@ -29,6 +30,8 @@ public class RecruitController implements RecruitControllerApi {
 
   @Autowired
   private RecruitService recruitService;
+  @Autowired
+  private AccountService accountService;
 
   @Autowired
   private EncodeConfig config;
@@ -74,4 +77,44 @@ public class RecruitController implements RecruitControllerApi {
 
   }
 
+  @Override
+  @RequestMapping( value = "/addRecruit",method = RequestMethod.POST)
+  public ResponseResult addRecruitInfo(@RequestBody RecruitInfo recruitInfo) {
+    boolean res=recruitService.addRecruitById(recruitInfo);
+    if(res){
+      return ResponseResult.okResult(true);
+    }
+    return ResponseResult.errorResult(1000,"data is exist");
+  }
+
+  @Override
+  @RequestMapping( value = "/myRecruit",method = RequestMethod.GET)
+  public ResponseResult getUserRecruits(@RequestParam("userId") String userId) {
+    ArrayList<RecruitBasicVO> list=recruitService.getUserRecruitBasic(userId);
+    if(null!=list){
+      return ResponseResult.okResult(list);
+    }
+    return ResponseResult.errorResult(1001,"invalid account");
+  }
+
+  @Override
+  @RequestMapping( value = "/recruitDetails",method = RequestMethod.GET)
+  public ResponseResult getRecruitDetails(@RequestParam("postId") String postId) {
+
+    return ResponseResult.okResult(recruitService.getRecruitDetails(postId));
+  }
+
+  @Override
+  @RequestMapping( value = "/deleteRecruit",method = RequestMethod.GET)
+  public ResponseResult deleteRecruitInfo(@RequestParam("id") String id,@RequestParam("userId") String userId) {
+    Account account=accountService.getAccountInformation(userId);
+    if (account!=null){
+      boolean res=recruitService.removeRecruitById(id);
+      if(res){
+        return ResponseResult.okResult(true);
+      }
+      return ResponseResult.okResult(false);
+    }
+    return ResponseResult.errorResult(1001,"invalid account");
+  }
 }

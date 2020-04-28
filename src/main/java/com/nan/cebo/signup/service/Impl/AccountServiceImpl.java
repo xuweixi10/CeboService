@@ -47,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
     public String getWeChatUid(String code) {
         try {
             String result="";
-            URL url = new URL("");
+            URL url = new URL("https://api.weixin.qq.com/sns/jscode2session?appid=wxec8feaef0bcaa9ce&secret=7725b03e4d19bfa34badba5d386788d7&js_code="+code+"&grant_type=authorization_code&connect_redirect=1");
             //打开和url之间的连接
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             PrintWriter out = null;
