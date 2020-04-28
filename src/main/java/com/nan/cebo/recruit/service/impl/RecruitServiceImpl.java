@@ -8,8 +8,14 @@ import com.nan.cebo.recruit.domain.vos.HotCompetitionVO;
 import com.nan.cebo.recruit.domain.vos.RecruitBasicVO;
 import com.nan.cebo.recruit.persistence.RecruitMapper;
 import com.nan.cebo.recruit.service.RecruitService;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.nan.cebo.signup.domain.Account;
+import com.nan.cebo.signup.persistence.AccountMapper;
+import com.nan.cebo.utils.competition.apply.TeamIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +34,9 @@ public class RecruitServiceImpl implements RecruitService {
 
   @Autowired
   CompetitionMapper competitionMapper;
+
+  @Autowired
+  AccountMapper accountMapper;
 
   @Override
   public List<HotCompetitionVO> getHotCompetition() {
@@ -84,4 +93,42 @@ public class RecruitServiceImpl implements RecruitService {
     recruitBasicVO.setWantedPerson(recruitInfo.getWantedPerson());
     return recruitBasicVO;
   }
+
+
+  @Override
+  public boolean addRecruitById(RecruitInfo recruitInfo) {
+    String userId=recruitInfo.getPostedId();
+    String id= TeamIdGenerate.generateId();
+    recruitInfo.setId(id);
+    //check user is exist
+    Account account=accountMapper.getUserInformation(userId);
+    if(null!=account){
+      recruitMapper.insertRecruitInfo(recruitInfo);
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public ArrayList<RecruitBasicVO> getUserRecruitBasic(String userId) {
+    /*
+      引进缓存策略，提高basic数据的获取速度
+     */
+    Account account=accountMapper.getUserInformation(userId);
+    if(null==account){
+      return null;
+    }
+    ArrayList<RecruitBasicVO> simple=new ArrayList<>();
+    ArrayList<RecruitInfo> details=recruitMapper.getUserAllRecruit(userId);
+    for(RecruitInfo recruitInfo:details){
+      simple.add(convertRecruitInfo2VO(recruitInfo));
+    }
+    return simple;
+  }
+
+  @Override
+  public RecruitInfo getRecruitDetails(String postId) {
+    return recruitMapper.getRecruitDetails(postId);
+  }
+
 }
