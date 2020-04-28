@@ -11,7 +11,7 @@
     </select>
     <select id="updateSchoolInformation" parameterType="com.nan.cebo.signup.domain.SchoolInformation">
         update `wechat_account` set
-        `schoolId`=#{schoolId}
+        `schoolId`=#{schoolId},
         `studentId`=#{studentId}
         where `uuid`=#{uuid}
     </select>

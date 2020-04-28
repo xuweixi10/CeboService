@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 @CrossOrigin
 @Controller
-@RequestMapping("/Apply")
+    @RequestMapping("/Apply")
 public class ApplyController {
     @Autowired
     private ApplyService applyService;

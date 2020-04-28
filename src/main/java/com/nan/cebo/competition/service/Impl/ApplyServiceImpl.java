@@ -42,6 +42,7 @@ public class ApplyServiceImpl implements ApplyService {
         ApplyFormData applyFormData = new ApplyFormData();
         applyFormData.setCompetitionId(applyDataBase.getCompetitionId());
         applyFormData.setMinPeople(applyDataBase.getMinPeople());
+        applyFormData.setMaxPeople(applyDataBase.getMaxPeople());
         ArrayList<ApplyType> capApplyType = getInformation(
                 MixAll.StringToByteArray(applyDataBase.getCapapplyType()),
                 MixAll.StringToArray(applyDataBase.getCapapplyInformationId()));
