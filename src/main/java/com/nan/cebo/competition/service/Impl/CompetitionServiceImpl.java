@@ -2,6 +2,7 @@ package com.nan.cebo.competition.service.Impl;
 
 import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.CompetitionDetail;
+import com.nan.cebo.competition.domain.competition.CompetitionDetailContent;
 import com.nan.cebo.competition.domain.competition.IndexPic;
 import com.nan.cebo.competition.persistence.CompetitionMapper;
 import com.nan.cebo.competition.service.CompetitionService;
@@ -46,6 +47,11 @@ public class CompetitionServiceImpl implements CompetitionService {
     }
     List<CompetitionDetail> competitionDetail = competitionMapper
         .getCompetitionDetailById(compId);
+    for(CompetitionDetail detail:competitionDetail){
+      List<CompetitionDetailContent> contents=competitionMapper
+          .getCompetitionDetailContentByDetailId(detail.getId());
+      detail.setContents(contents);
+    }
     competition.setCompetitionDetail(competitionDetail);
     return competition;
   }
