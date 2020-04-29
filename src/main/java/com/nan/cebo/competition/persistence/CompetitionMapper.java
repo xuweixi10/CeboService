@@ -2,6 +2,7 @@ package com.nan.cebo.competition.persistence;
 
 import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.CompetitionDetail;
+import com.nan.cebo.competition.domain.competition.CompetitionDetailContent;
 import com.nan.cebo.competition.domain.competition.IndexPic;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -41,4 +42,10 @@ public interface CompetitionMapper {
    * @return 竞赛详细信息列表
    */
   List<CompetitionDetail> getCompetitionDetailById(String compId);
+
+  /**
+   * @param detailId 细节Id
+   * @return 竞赛详细信息内容列表
+   */
+  List<CompetitionDetailContent> getCompetitionDetailContentByDetailId(String detailId);
 }

@@ -38,4 +38,9 @@ public class CompetitionMapperTest {
   public void CompDetailByIdTest(){
     System.out.println(competitionMapper.getCompetitionDetailById("202003200001"));
   }
+
+  @Test
+  public void CompDetailContentByIdTest(){
+    System.out.println(competitionMapper.getCompetitionDetailContentByDetailId("20200320000101"));
+  }
 }

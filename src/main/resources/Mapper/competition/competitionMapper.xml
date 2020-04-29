@@ -25,7 +25,13 @@
   <resultMap id="resultMap_comp_detail" type="com.nan.cebo.competition.domain.competition.CompetitionDetail">
     <id column="id" property="id"/>
     <result column="comp_id" property="compId"/>
-    <result column="detail_name" property="detailName"/>
+    <result column="detail_title" property="detailTitle"/>
+  </resultMap>
+
+  <resultMap id="resultMap_comp_detail_content" type="com.nan.cebo.competition.domain.competition.CompetitionDetailContent">
+    <id column="id" property="id"/>
+    <result column="detail_id" property="detailId"/>
+    <result column="content_name" property="contentName"/>
     <result column="content_url" property="contentURL"/>
   </resultMap>
 
@@ -34,7 +40,11 @@
   </sql>
 
   <sql id="Base_Column_List_comp_detail">
-    id, comp_id,detail_name,content_url
+    id, comp_id,detail_title
+  </sql>
+
+  <sql id="Base_Column_List_comp_detail_content">
+    id, detail_id,content_name,content_url
   </sql>
 
   <sql id="Base_Column_List_pic">
@@ -72,5 +82,12 @@
     <include refid="Base_Column_List_comp_detail"/>
     FROM comp_detail
     WHERE comp_id=#{compId}
+  </select>
+
+  <select id="getCompetitionDetailContentByDetailId" resultMap="resultMap_comp_detail_content">
+    SELECT
+    <include refid="Base_Column_List_comp_detail_content"/>
+    FROM comp_detail_content
+    WHERE detail_id =#{String detailId}
   </select>
 </mapper>

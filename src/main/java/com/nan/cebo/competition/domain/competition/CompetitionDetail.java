@@ -1,5 +1,6 @@
 package com.nan.cebo.competition.domain.competition;
 
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -11,6 +12,6 @@ import lombok.Data;
 public class CompetitionDetail {
   private String id;
   private String compId;
-  private String detailName;
-  private String contentURL;
+  private String detailTitle;
+  private List<CompetitionDetailContent> contents;
 }

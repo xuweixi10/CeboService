@@ -27,8 +27,6 @@ public class ResponseResultTest {
     competition.setApplyEndDate(new Date());
     CompetitionDetail cd=new CompetitionDetail();
     cd.setCompId("201903030003");
-    cd.setContentURL("asdasd");
-    cd.setDetailName("gfhfg");
     List<CompetitionDetail>cds=new ArrayList<>();
     cds.add(cd);
     competition.setCompetitionDetail(cds);
