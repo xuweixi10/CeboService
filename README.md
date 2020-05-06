@@ -17,7 +17,7 @@
     1.查看参加的比赛，发布的招募，招募的删除。
     2.绑定的学号，学号的修改。
 #### 参与人员
-    感谢 [xuweixi10](https://github.com/xuweixi10),[HWalkingMan](https://github.com/HWalkingMan)
+感谢 [xuweixi10](https://github.com/xuweixi10),[HWalkingMan](https://github.com/HWalkingMan)
 
 #### 后续计划
     1.后台管理系统，发布比赛，主办方查看参赛人员信息。
