@@ -109,7 +109,7 @@ public class ApplySqlIntercepts implements Interceptor{
         builder.useCache(ms.isUseCache());
         return builder.build();
     }
-    public Class getType(byte type){
+    private Class getType(byte type){
         DataBaseTableName dataBaseTableName=DataBaseTableName.valueof(type);
         if(dataBaseTableName!=null){
             return dataBaseTableName.getTypeClass();

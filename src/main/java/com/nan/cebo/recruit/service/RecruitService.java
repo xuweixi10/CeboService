@@ -44,4 +44,6 @@ public interface RecruitService {
    * @return 帖子详情
    */
   RecruitInfo getRecruitDetails(String postId);
+
+  ArrayList<RecruitInfo> getHotCompetitions(String name);
 }

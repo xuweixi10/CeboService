@@ -47,4 +47,7 @@
     SELECT id,posted_id,comp_name,wanted_person,introduction,extra_info
     FROM `recruit_info` WHERE `id`=#{id}
   </select>
+  <select id="getHotCompetition" parameterType="java.lang.String" resultType="com.nan.cebo.recruit.domain.pojos.RecruitInfo" resultMap="resultMap">
+    SELECT id,posted_id,comp_name,wanted_person,introduction,extra_info FROM `cebo`.`recruit_info` WHERE `comp_name` =#{competitionName}
+  </select>
 </mapper>

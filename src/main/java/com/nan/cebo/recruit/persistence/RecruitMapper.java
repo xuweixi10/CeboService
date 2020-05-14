@@ -43,4 +43,11 @@ public interface RecruitMapper {
    */
   RecruitInfo getRecruitDetails(String id);
 
+  /**
+   * 获取某一个比赛的所有招募
+   * @param competitionName 比赛名字
+   * @return list
+   */
+  ArrayList<RecruitInfo> getHotCompetition(String competitionName);
+
 }

@@ -131,4 +131,8 @@ public class RecruitServiceImpl implements RecruitService {
     return recruitMapper.getRecruitDetails(postId);
   }
 
+  @Override
+  public ArrayList<RecruitInfo> getHotCompetitions(String name) {
+    return recruitMapper.getHotCompetition(name);
+  }
 }

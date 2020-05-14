@@ -18,6 +18,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Description
  * @Author WM
@@ -75,6 +77,15 @@ public class RecruitController implements RecruitControllerApi {
       return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST);
     }
 
+  }
+
+  @RequestMapping( value = "/getHotRecruit",method = RequestMethod.GET)
+  public ResponseResult getHotCompetition(@RequestParam("name") @NotNull String name) {
+    ArrayList<RecruitInfo> datas=recruitService.getHotCompetitions(name);
+    if(null!=datas){
+      return ResponseResult.okResult(datas);
+    }
+    return ResponseResult.errorResult(500,"no data find");
   }
 
   @Override
