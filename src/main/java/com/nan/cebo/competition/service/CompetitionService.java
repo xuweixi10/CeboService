@@ -16,7 +16,7 @@ public interface CompetitionService {
 
   List<Competition> getCompetionBasicAll();
 
-  Competition getCompetionDetail(String compId);
+  Competition getCompetitionDetail(String compId);
 
   Competition getCompetionBasic(String compId);
 }

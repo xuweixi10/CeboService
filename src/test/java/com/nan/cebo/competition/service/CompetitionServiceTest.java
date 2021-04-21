@@ -1,7 +1,5 @@
 package com.nan.cebo.competition.service;
 
-import static org.junit.Assert.*;
-
 import com.nan.cebo.Cebo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +26,6 @@ public class CompetitionServiceTest {
 
   @Test
   public void compDetailTest(){
-    System.out.println(competitionService.getCompetionDetail("202003200001"));
+    System.out.println(competitionService.getCompetitionDetail("202003200001"));
   }
 }

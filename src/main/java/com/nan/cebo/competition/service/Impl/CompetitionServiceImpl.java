@@ -40,7 +40,7 @@ public class CompetitionServiceImpl implements CompetitionService {
   }
 
   @Override
-  public Competition getCompetionDetail(String compId) {
+  public Competition getCompetitionDetail(String compId) {
     Competition competition=competitionMapper.getCompetitionBasicById(compId);
     if (competition==null){
       return null;

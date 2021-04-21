@@ -66,7 +66,7 @@ public class CompetitionController implements CompetitionControllerApi {
     if (compId==null){
       return loadCompBasic((Integer)(null));
     }
-    Competition competition = competitionService.getCompetionDetail(compId);
+    Competition competition = competitionService.getCompetitionDetail(compId);
     if (competition == null) {
       return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST, "找不到对应Id的竞赛");
     }

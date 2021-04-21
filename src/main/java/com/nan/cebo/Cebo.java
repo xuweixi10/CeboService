@@ -13,7 +13,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @date 2020/4/13 11:00
  */
 
-@MapperScan({"com.nan.cebo.competition.persistence","com.nan.cebo.recruit.persistence","com.nan.cebo.signup.persistence"})
+@MapperScan({"com.nan.cebo.competition.persistence",
+        "com.nan.cebo.recruit.persistence",
+        "com.nan.cebo.signup.persistence","com.nan.cebo.post.persistence"})
 @SpringBootApplication
 @EnableScheduling
 public class Cebo {

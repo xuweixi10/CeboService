@@ -41,21 +41,21 @@ public class ApplySqlIntercepts implements Interceptor{
         final Object[] args = invocation.getArgs();
         MappedStatement ms = (MappedStatement) args[0];
         Class<?> classType = Class.forName(ms.getId().substring(0, ms.getId().lastIndexOf(".")));
-        String methodName=ms.getId().substring(ms.getId().lastIndexOf(".")+1,ms.getId().length());
-        Method[] methods=classType.getMethods();
-        for(Method method:methods){
-            if(method.getName().equals(methodName)){
-                Annotation annotation=method.getAnnotation(InterceptMethod.class);
-                if(annotation!=null){
+        String methodName = ms.getId().substring(ms.getId().lastIndexOf(".") + 1, ms.getId().length());
+        Method[] methods = classType.getMethods();
+        for (Method method : methods) {
+            if (method.getName().equals(methodName)) {
+                Annotation annotation = method.getAnnotation(InterceptMethod.class);
+                if (annotation != null) {
                     //改变ms
                     Object parameterObject = args[1];
-                    if(((Map)parameterObject).containsKey("type")){
-                        byte type=(byte)((Map)parameterObject).get("type");
-                        Class applyType=getType(type);
-                        if(applyType==null){
+                    if (((Map) parameterObject).containsKey("type")) {
+                        byte type = (byte) ((Map) parameterObject).get("type");
+                        Class applyType = getType(type);
+                        if (applyType == null) {
                             return invocation.proceed();
                         }
-                        args[0]=changeResultType(ms,applyType);
+                        args[0] = changeResultType(ms, applyType);
                         return invocation.proceed();
                     }
                 }

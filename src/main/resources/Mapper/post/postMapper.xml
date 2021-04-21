@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nan.cebo.post.persistence.PostMapper">
+
+    <select id="insertPost" parameterType="com.nan.cebo.post.domain.Post">
+        insert into `post_information` (`id` , `user_id` , `title` , `content` , `read_count`)
+        values(#{id},#{user_id},#{title},#{content},#{read_count})
+    </select>
+    <select id="getPosts" parameterType="java.lang.Integer" resultType="com.nan.cebo.post.domain.Post">
+        select * from `post_information` order by `id` limit #{page} ,8
+    </select>
+</mapper>
