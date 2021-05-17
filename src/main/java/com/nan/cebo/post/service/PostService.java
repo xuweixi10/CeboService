@@ -13,5 +13,9 @@ public interface PostService {
      */
     String insertPost(Post post);
 
+    Post getPost(String postId);
+
     ArrayList<Post> getPosts(int page);
+
+    ArrayList<Post> getUserPosts(String userId);
 }

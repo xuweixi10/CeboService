@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface AccountService {
     int checkAccountStatus(String openId,String nickName);
     String getWeChatUid(String openId);
-    boolean updateSchoolInformation(SchoolInformation information);
+    boolean updateSchoolInformation(Account account);
     Account getAccountInformation(String openId);
     //ArrayList<>
 }

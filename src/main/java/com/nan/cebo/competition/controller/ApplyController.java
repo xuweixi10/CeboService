@@ -72,15 +72,6 @@ public class ApplyController {
             return ResponseResult.okResult(data);
         }
     }
-    /**
-     *
-     */
-    @ResponseBody
-    @RequestMapping(value = "/test",method = {RequestMethod.GET})
-    public String testAPi(@RequestParam("test") String test){
-        System.out.println(test);
-        return "ok";
-    }
 
 
 }

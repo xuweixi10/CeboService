@@ -2,6 +2,8 @@ package com.nan.cebo.competition.service;
 
 import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.IndexPic;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,4 +21,12 @@ public interface CompetitionService {
   Competition getCompetitionDetail(String compId);
 
   Competition getCompetionBasic(String compId);
+
+  boolean addCollection(String openId,String competitionId);
+
+  boolean deleteCollection(String openId,String competitionId);
+
+  List<Competition> getCollections(String openId);
+
+  boolean checkData(String openId,String competitionId);
 }

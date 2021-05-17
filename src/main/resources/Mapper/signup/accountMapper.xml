@@ -3,16 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nan.cebo.signup.persistence.AccountMapper">
     <select id="getUserInformation" parameterType="java.lang.String" resultType="com.nan.cebo.signup.domain.Account">
-        SELECT * FROM `wechat_account` WHERE `uuid`=#{uuid}
+        SELECT * FROM `user_information` WHERE `openId`=#{openId}
     </select>
     <select id="insertAccount" parameterType="com.nan.cebo.signup.domain.Account">
-        insert into `wechat_account` (`uuid`,`schoolId`,`nickName`,`studentId`)
-        values(#{uuid},#{schoolId},#{nickName},#{studentId})
+        insert into `user_information` (`openId`,`studentId`)
+        values(#{openId},#{studentId})
     </select>
-    <select id="updateSchoolInformation" parameterType="com.nan.cebo.signup.domain.SchoolInformation">
-        update `wechat_account` set
-        `schoolId`=#{schoolId},
+    <select id="updateSchoolInformation" parameterType="com.nan.cebo.signup.domain.Account">
+        update `user_information` set
         `studentId`=#{studentId}
-        where `uuid`=#{uuid}
+        where `openId`=#{openId}
     </select>
 </mapper>

@@ -28,43 +28,41 @@ public class CompetitionController implements CompetitionControllerApi {
   CompetitionService competitionService;
 
   @Override
-  @RequestMapping(value = "/index/swiperImage",method = {RequestMethod.GET})
+  @RequestMapping(value = "/index/swiperImage", method = {RequestMethod.GET})
   public ResponseResult loadIndexImage() {
     return ResponseResult.okResult(competitionService.getIndexPic());
   }
 
   @Override
-  @RequestMapping(value = "/basic",method = {RequestMethod.GET})
-  public ResponseResult loadCompBasic(@RequestParam(value = "page",required = false) Integer page) {
-    if (page==null){
+  @RequestMapping(value = "/basic", method = {RequestMethod.GET})
+  public ResponseResult loadCompBasic(@RequestParam(value = "page", required = false) Integer page) {
+    if (page == null) {
       return ResponseResult.okResult(competitionService.getCompetionBasicAll());
-    }
-    else if (page >0){
+    } else if (page > 0) {
       return ResponseResult.okResult(competitionService.getCompetionBasic(page));
-    }
-    else {
-      return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID,"页码错误");
+    } else {
+      return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID, "页码错误");
     }
   }
 
   @Override
-  @RequestMapping(value = "/basic/{compId}",method = {RequestMethod.GET})
+  @RequestMapping(value = "/basic/{compId}", method = {RequestMethod.GET})
   public ResponseResult loadCompBasic(@PathVariable("compId") String compId) {
-    if (compId==null){
+    if (compId == null) {
       return ResponseResult.okResult(competitionService.getCompetionBasicAll());
     }
     Competition competionBasic = competitionService.getCompetionBasic(compId);
-    if (competionBasic==null){
-      return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST,"找不到对应Id的竞赛");
+    if (competionBasic == null) {
+      return ResponseResult.errorResult(AppHttpCodeEnum.DATA_NOT_EXIST, "找不到对应Id的竞赛");
     }
     return ResponseResult.okResult(competionBasic);
   }
 
   @Override
-  @RequestMapping(value = "/detail",method = {RequestMethod.GET})
+  @RequestMapping(value = "/detail", method = {RequestMethod.GET})
   public ResponseResult loadCompDetail(@RequestParam("compId") @NotNull String compId) {
-    if (compId==null){
-      return loadCompBasic((Integer)(null));
+    if (compId == null) {
+      return loadCompBasic((Integer) (null));
     }
     Competition competition = competitionService.getCompetitionDetail(compId);
     if (competition == null) {
@@ -72,4 +70,41 @@ public class CompetitionController implements CompetitionControllerApi {
     }
     return ResponseResult.okResult(competition);
   }
+
+  @Override
+  @RequestMapping(value = "/addCollection", method = {RequestMethod.POST})
+  public ResponseResult addCollection(@RequestParam("openId") String openId,
+                                      @RequestParam("competitionId") String competitionId) {
+    if (openId == null || competitionId == null) {
+      return ResponseResult.okResult(false);
+    } else {
+      boolean result = competitionService.addCollection(openId, competitionId);
+      return ResponseResult.okResult(result);
+    }
+  }
+
+  @Override
+  @RequestMapping(value = "/deleteCollection", method = {RequestMethod.GET})
+  public ResponseResult deleteCollection(String openId, String competitionId) {
+    if (openId == null || competitionId == null) {
+      return ResponseResult.okResult(false);
+    } else {
+      return ResponseResult.okResult(competitionService.deleteCollection(openId, competitionId));
+    }
+  }
+
+  @Override
+  @RequestMapping(value = "/getCollections", method = {RequestMethod.GET})
+  public ResponseResult getCollections(@RequestParam("openId") String openId) {
+    return ResponseResult.okResult(competitionService.getCollections(openId));
+  }
+
+  @Override
+  @RequestMapping(value = "/checkData", method = {RequestMethod.GET})
+  public ResponseResult checkData(@RequestParam("openId") String openId,
+                                  @RequestParam("competitionId") String competitionId) {
+    boolean result = competitionService.checkData(openId,competitionId);
+    return ResponseResult.okResult(result);
+  }
+
 }

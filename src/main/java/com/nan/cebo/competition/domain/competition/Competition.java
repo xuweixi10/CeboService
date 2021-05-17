@@ -19,6 +19,7 @@ public class Competition {
   private Date applyBeginDate;
   private Date applyEndDate;
   private String object;
+  private String introduce;
   private List<CompetitionDetail> competitionDetail;
 
   public Competition() {

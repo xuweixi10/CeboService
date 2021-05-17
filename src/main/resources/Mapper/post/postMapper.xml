@@ -7,7 +7,13 @@
         insert into `post_information` (`id` , `user_id` , `title` , `content` , `read_count`)
         values(#{id},#{user_id},#{title},#{content},#{read_count})
     </select>
+    <select id="getPost" parameterType="java.lang.String" resultType="com.nan.cebo.post.domain.Post">
+        select * from `post_information` where `id` = #{postId}
+    </select>
     <select id="getPosts" parameterType="java.lang.Integer" resultType="com.nan.cebo.post.domain.Post">
         select * from `post_information` order by `id` limit #{page} ,8
+    </select>
+    <select id="getUserPosts" parameterType="java.lang.String" resultType="com.nan.cebo.post.domain.Post">
+        select * from `post_information` WHERE `user_id` = #{userId}
     </select>
 </mapper>

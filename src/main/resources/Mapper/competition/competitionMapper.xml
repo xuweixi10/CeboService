@@ -90,4 +90,24 @@
     FROM comp_detail_content
     WHERE detail_id =#{String detailId}
   </select>
+
+  <select id="getCompetitionIntroduce" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT introduce from `comp_detail` where id = #{id}
+  </select>
+
+  <select id="addCollection" parameterType="java.lang.String" >
+    INSERT INTO `user_collection` (`openId`,`competitionId`) values (#{openId},#{competitionId})
+  </select>
+
+  <select id="deleteCollection" parameterType="java.lang.String">
+    delete from `user_collection` where `openId` = #{openId} and `competitionId` = #{competitionId}
+  </select>
+
+  <select id="getCollections" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT `competitionId` from `user_collection` where `openId` = #{openId}
+  </select>
+
+  <select id="checkData" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT `openId` from `user_collection` where `openId` = #{openId} and `competitionId` = #{competitionId}
+  </select>
 </mapper>

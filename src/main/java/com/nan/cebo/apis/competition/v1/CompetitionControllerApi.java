@@ -40,4 +40,12 @@ public interface CompetitionControllerApi {
    * @return 竞赛详细信息列表
    */
   public ResponseResult loadCompDetail(String compId);
+
+  public ResponseResult addCollection(String openId,String competitionId);
+
+  public ResponseResult deleteCollection(String openId, String competitionId);
+
+  public ResponseResult getCollections(String openId);
+
+  public ResponseResult checkData(String openId,String competitionId);
 }

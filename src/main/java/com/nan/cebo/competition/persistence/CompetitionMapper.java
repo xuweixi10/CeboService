@@ -4,6 +4,8 @@ import com.nan.cebo.competition.domain.competition.Competition;
 import com.nan.cebo.competition.domain.competition.CompetitionDetail;
 import com.nan.cebo.competition.domain.competition.CompetitionDetailContent;
 import com.nan.cebo.competition.domain.competition.IndexPic;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -48,4 +50,29 @@ public interface CompetitionMapper {
    * @return 竞赛详细信息内容列表
    */
   List<CompetitionDetailContent> getCompetitionDetailContentByDetailId(String detailId);
+
+  /**
+   * 获取对应比赛id的详细信息
+   * @param comId 比赛id
+   * @return 介绍
+   */
+  String getCompetitionIntroduce(String comId);
+
+  /**
+   * 用户添加收藏
+   * @param openId
+   * @param competitionId
+   */
+  void addCollection(String openId,String competitionId);
+
+  void deleteCollection(String openId,String competitionId);
+
+  /**
+   *
+   * @param openId
+   * @return
+   */
+  List<String> getCollections(String openId);
+
+  String checkData(String openId,String competitionId);
 }

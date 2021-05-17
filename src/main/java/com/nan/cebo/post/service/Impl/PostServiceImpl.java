@@ -33,7 +33,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post getPost(String postId) {
+        return postMapper.getPost(postId);
+    }
+
+    @Override
     public ArrayList<Post> getPosts(int page) {
         return postMapper.getPosts(page * PAGE_NUM);
+    }
+
+    @Override
+    public ArrayList<Post> getUserPosts(String userId) {
+        return postMapper.getUserPosts(userId);
     }
 }

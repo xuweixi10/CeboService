@@ -29,5 +29,5 @@ public interface AccountMapper {
      * update user school information
      * @param schoolInformation user school
      */
-    void updateSchoolInformation(SchoolInformation schoolInformation);
+    void updateSchoolInformation(Account account);
 }

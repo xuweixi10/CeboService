@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Properties;
-
 /**
  * @author xuxiaoxi10
  * @version 1.0
@@ -22,12 +19,6 @@ import java.util.Properties;
 public class AccountController {
     @Autowired
     AccountService accountService;
-    @ResponseBody
-    @RequestMapping(value = "/status",method = {RequestMethod.POST})
-    public ResponseResult getAccountStatus(@RequestBody Account account){
-        int re=accountService.checkAccountStatus(account.getUuid(),account.getNickName());
-        return ResponseResult.okResult(re);
-    }
 
     @ResponseBody
     @RequestMapping(value = "/openId",method = {RequestMethod.GET})
@@ -55,9 +46,9 @@ public class AccountController {
 
     @ResponseBody
     @RequestMapping(value = "/schoolInformation",method = {RequestMethod.POST})
-    public ResponseResult getAccountInformation(@RequestBody SchoolInformation information){
+    public ResponseResult getAccountInformation(@RequestBody Account account){
         try {
-            boolean res=accountService.updateSchoolInformation(information);
+            boolean res=accountService.updateSchoolInformation(account);
             if(res){
                 return ResponseResult.okResult(200,"更新成功");
             }

@@ -6,33 +6,15 @@ package com.nan.cebo.signup.domain;
  * @date 2020/4/23 13:10
  */
 public class Account {
-    private String uuid=null;
-    private String schoolId=null;
-    private String nickName=null;
+    private String openId =null;
     private String studentId=null;
 
-    public String getUuid() {
-        return uuid;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(String schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
     public String getStudentId() {

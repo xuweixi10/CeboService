@@ -30,8 +30,7 @@ public class AccountServiceImpl implements AccountService {
         Account account=accountMapper.getUserInformation(openId);
         if(null==account){
             Account account1=new Account();
-            account1.setNickName(nickName);
-            account1.setUuid(openId);
+            account1.setOpenId(openId);
             accountMapper.insertAccount(account1);
             return 0;
         }
@@ -91,9 +90,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean updateSchoolInformation(SchoolInformation information) {
+    public boolean updateSchoolInformation(Account account) {
         try {
-            accountMapper.updateSchoolInformation(information);
+            Account account1 = accountMapper.getUserInformation(account.getOpenId());
+            if(account1==null){
+                return insertAccount(account);
+            }else{
+                accountMapper.updateSchoolInformation(account);
+            }
             return true;
         }catch (Exception e){
             return false;
